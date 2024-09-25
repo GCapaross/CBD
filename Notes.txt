@@ -1,0 +1,3 @@
+Outros paradigmas de bases de dados sem ser relacional
+
+- Identificar quando usar bases de dados relacionais vs as que vamos dar
