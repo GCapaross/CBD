@@ -4,3 +4,16 @@ ls -la
 Can use with or without docker
 Install docker desktop
 Install and use normal docker
+
+Email enviado pelo professor com estrutura
+
+
+Os exercicios sao todos para serem desenvolvidos a partir do redis
+
+mvn clean install
+mvn clean compile
+
+Trabalhar com redis em docker, container ou nativamente
+
+
+!Todas as estruturas de dados auxiliares teem de estar em redis!

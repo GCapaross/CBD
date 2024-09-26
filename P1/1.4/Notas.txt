@@ -1,0 +1,1 @@
+Todas as estruturas de dados auxiliares teem de estar em redis
