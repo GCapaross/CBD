@@ -1,0 +1,76 @@
+Redis data has been reset.
+Enter your username (or type 'list' to see registered users, 'stop' to quit): list
+No users have registered yet.
+Enter your username (or type 'list' to see registered users, 'stop' to quit): Gabriel
+Available products:
+1. Laptop (Stock: 30)
+2. Smartphone (Stock: 30)
+3. Tablet (Stock: 30)
+4. Headphones (Stock: 30)
+5. Smartwatch (Stock: 30)
+Choose the product number: 9
+Invalid product ID. Please try again.
+Choose the product number: 3
+Enter the quantity: 20
+Order placed successfully!
+Enter your username (or type 'list' to see registered users, 'stop' to quit): list
+Registered users:
+User: Gabriel
+Orders made: 20
+
+Enter your username (or type 'list' to see registered users, 'stop' to quit): Gabriel
+Available products:
+1. Laptop (Stock: 30)
+2. Smartphone (Stock: 30)
+3. Tablet (Stock: 10)
+4. Headphones (Stock: 30)
+5. Smartwatch (Stock: 30)
+Choose the product number: 1
+Enter the quantity: 11
+Error: Order limit exceded!
+Enter your username (or type 'list' to see registered users, 'stop' to quit): list
+Registered users:
+User: Gabriel
+Orders made: 20
+
+Enter your username (or type 'list' to see registered users, 'stop' to quit): Gabriel
+Available products:
+1. Laptop (Stock: 30)
+2. Smartphone (Stock: 30)
+3. Tablet (Stock: 10)
+4. Headphones (Stock: 30)
+5. Smartwatch (Stock: 30)
+Choose the product number: 1
+Enter the quantity: 10
+Order placed successfully!
+Enter your username (or type 'list' to see registered users, 'stop' to quit): list
+Registered users:
+User: Gabriel
+Orders made: 30
+Time remaining to place a new order: 3582 seconds
+
+Enter your username (or type 'list' to see registered users, 'stop' to quit): Joao
+Available products:
+1. Laptop (Stock: 20)
+2. Smartphone (Stock: 30)
+3. Tablet (Stock: 10)
+4. Headphones (Stock: 30)
+5. Smartwatch (Stock: 30)
+Choose the product number: 4
+Enter the quantity: 30
+Order placed successfully!
+Enter your username (or type 'list' to see registered users, 'stop' to quit): list
+Registered users:
+User: Gabriel
+Orders made: 30
+Time remaining to place a new order: 3572 seconds
+
+User: Joao
+Orders made: 30
+Time remaining to place a new order: 3598 seconds
+
+Enter your username (or type 'list' to see registered users, 'stop' to quit): stop
+
+
+
+

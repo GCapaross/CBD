@@ -1,0 +1,77 @@
+// When you choose a product you only get 1 at a time, until you reach 30 and then you get the timer
+
+Redis data has been reset.
+Enter your username (or type 'list' to see registered users, 'stop' to quit): Gabriel
+Available products:
+11. Product 11 (Stock: 30)
+22. Product 22 (Stock: 30)
+12. Product 12 (Stock: 30)
+23. Product 23 (Stock: 30)
+13. Product 13 (Stock: 30)
+24. Product 24 (Stock: 30)
+14. Product 14 (Stock: 30)
+25. Product 25 (Stock: 30)
+15. Product 15 (Stock: 30)
+26. Product 26 (Stock: 30)
+16. Product 16 (Stock: 30)
+27. Product 27 (Stock: 30)
+17. Product 17 (Stock: 30)
+28. Product 28 (Stock: 30)
+18. Product 18 (Stock: 30)
+29. Product 29 (Stock: 30)
+19. Product 19 (Stock: 30)
+1. Product 1 (Stock: 30)
+2. Product 2 (Stock: 30)
+3. Product 3 (Stock: 30)
+4. Product 4 (Stock: 30)
+5. Product 5 (Stock: 30)
+6. Product 6 (Stock: 30)
+7. Product 7 (Stock: 30)
+8. Product 8 (Stock: 30)
+9. Product 9 (Stock: 30)
+30. Product 30 (Stock: 30)
+20. Product 20 (Stock: 30)
+10. Product 10 (Stock: 30)
+21. Product 21 (Stock: 30)
+Choose the product number: 1
+Order placed successfully!
+Enter your username (or type 'list' to see registered users, 'stop' to quit): Gabriel
+Available products:
+11. Product 11 (Stock: 30)
+22. Product 22 (Stock: 30)
+12. Product 12 (Stock: 30)
+23. Product 23 (Stock: 30)
+13. Product 13 (Stock: 30)
+24. Product 24 (Stock: 30)
+14. Product 14 (Stock: 30)
+25. Product 25 (Stock: 30)
+15. Product 15 (Stock: 30)
+26. Product 26 (Stock: 30)
+16. Product 16 (Stock: 30)
+27. Product 27 (Stock: 30)
+17. Product 17 (Stock: 30)
+28. Product 28 (Stock: 30)
+18. Product 18 (Stock: 30)
+29. Product 29 (Stock: 30)
+19. Product 19 (Stock: 30)
+1. Product 1 (Stock: 29)
+2. Product 2 (Stock: 30)
+3. Product 3 (Stock: 30)
+4. Product 4 (Stock: 30)
+5. Product 5 (Stock: 30)
+6. Product 6 (Stock: 30)
+7. Product 7 (Stock: 30)
+8. Product 8 (Stock: 30)
+9. Product 9 (Stock: 30)
+30. Product 30 (Stock: 30)
+20. Product 20 (Stock: 30)
+10. Product 10 (Stock: 30)
+21. Product 21 (Stock: 30)
+Choose the product number: 3
+Order placed successfully!
+Enter your username (or type 'list' to see registered users, 'stop' to quit): list
+Registered users:
+User: Gabriel
+Orders made: 2
+
+Enter your username (or type 'list' to see registered users, 'stop' to quit): stop

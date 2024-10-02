@@ -20,7 +20,7 @@ public class Autocomplete {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String name = scanner.nextLine().trim();
-                jedis.z add(NAMES_KEY, 0, name);
+                jedis.zadd(NAMES_KEY, 0, name);
             }
             System.out.println("Names loaded into redis with success!");
         } catch (FileNotFoundException e) {
