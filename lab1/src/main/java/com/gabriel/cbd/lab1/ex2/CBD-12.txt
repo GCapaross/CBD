@@ -1,0 +1,2 @@
+cat CBD-12-batch.txt | redis-cli
+redis-cli --pipe < CBD-12-batch.txt

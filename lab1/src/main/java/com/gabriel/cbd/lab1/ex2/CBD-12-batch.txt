@@ -1,0 +1,18 @@
+SET user:1 "Alice"
+SET user:2 "Bob"
+SET user:3 "Charlie"
+SET age:1 30
+SET age:2 25
+SET age:3 40
+LPUSH list:fruits "apple"
+LPUSH list:fruits "banana"
+LPUSH list:fruits "cherry"
+SADD set:colors "red"
+SADD set:colors "green"
+SADD set:colors "blue"
+HSET hash:car brand "Toyota"
+HSET hash:car model "Corolla"
+HSET hash:car year 2020
+EXPIRE user:1 3600
+EXPIRE user:2 3600
+EXPIRE user:3 3600

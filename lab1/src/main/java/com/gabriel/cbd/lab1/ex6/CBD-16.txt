@@ -1,0 +1,9 @@
+As estruturas de dados utilizadas foram Lists e Sets. Para armazenamento de dados.
+(E usadas funções e estruturas do redis)
+
+Chaves usadas:
+    - user:{username} -> armazenar o utilizador
+    - follows:{username} -> set que armazena os users que {username} segue
+    - messages:{username} -> mensagens de cada user
+    - messageHisitory:{follower}:{followed} -> pois quando seguimos alguém temos que ter acesso às suas mensagens, então criamos uma lista para as mensagens de quem começámos a seguir
+

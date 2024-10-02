@@ -1,0 +1,20 @@
+SET key1 "value1"
+GET key1
+DEL key1
+EXISTS key1
+MSET key2 "value2" key3 "value3"
+MGET key2 key3
+HSET myhash field1 "value1"
+HGET myhash field1
+HGETALL myhash
+LPUSH mylist "value1"
+RPUSH mylist "value2"
+LRANGE mylist 0 -1
+SADD myset "value1"
+SREM myset "value1"
+SMEMBERS myset
+ZADD myzset 1 "value1"
+ZRANGE myzset 0 -1
+SUBSCRIBE mychannel
+PUBLISH mychannel "Hello, Redis!"
+FLUSHALL

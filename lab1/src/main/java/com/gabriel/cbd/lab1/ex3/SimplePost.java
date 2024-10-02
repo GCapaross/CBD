@@ -1,4 +1,4 @@
-package pt.tmg.cbd.lab1.ex3;
+package com.gabriel.cbd.lab1;
 
 import java.util.Set;
 import redis.clients.jedis.Jedis;

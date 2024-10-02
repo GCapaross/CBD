@@ -1,0 +1,13 @@
+User added successfully.
+User added successfully.
+User added successfully.
+userA is now following userB
+userA is now following userC
+Message sent successfully!
+Message sent successfully!
+Messages from userB: [Hello, world!]
+Messages from userC: [Hi everyone!]
+Messages for userA: [Hello, world!, Hi everyone!]
+
+
+// No user input, just predefined commands in the main

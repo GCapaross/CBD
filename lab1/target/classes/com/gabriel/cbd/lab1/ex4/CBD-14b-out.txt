@@ -1,0 +1,41 @@
+I did two Autocomplete functions here.
+In one I used .filter, .sorted and .stream, but by my interpretation of what the teacher said, we should be prioritizing using redis over java. So I created a new one
+I used zrangeByLex to order lexicographically and used zinter to intersect the sets, so besides of lexicographical order, I could have popularity wise, because there was no function that did both at the same time.
+So I had to create two sets "zadd -> namesByPopularity"
+And "zadd -> namesByAlphabet"
+
+# mvn clean install
+# mvn exec:java
+
+Search for ('Enter' for quit): mari
+maria
+mariana
+marisa
+marina
+marisol
+mariam
+mario
+marie
+maribel
+mariano
+mariama
+mariusz
+marius
+marisela
+marion
+marin
+marilyn
+mariluz
+marilinda
+marieta
+marianna
+mariame
+marialuísa
+mariah
+mari
+Search for ('Enter' for quit):
+
+
+With the example "mari" and watching the document "nomes-pt-2021.csv" we can see that Maria is the most popular name, meaning it would be the first as we can confirm in the print.
+
+

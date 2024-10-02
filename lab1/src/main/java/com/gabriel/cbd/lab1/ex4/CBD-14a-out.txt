@@ -1,0 +1,27 @@
+# Turn of redis (redis-server)
+# mvn clean install
+# mvn exec:java
+"Names loaded into redis with success!
+Search for ('Enter' for quit):"
+
+
+
+Example output:
+
+Search for ('Enter' for quit): Be
+No suggestions found.
+
+Search for ('Enter' for quit): bea
+Suggestions:
+
+bea
+beatrice
+beatrisa
+beatrix
+beatriz
+Search for ('Enter' for quit): Enter
+Exiting...
+
+
+- I decided to convert everything to lowerCase to become easier writing
+- If you press enter without writing anything, it will show every name
