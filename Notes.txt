@@ -1,3 +1,7 @@
 Outros paradigmas de bases de dados sem ser relacional
 
 - Identificar quando usar bases de dados relacionais vs as que vamos dar
+
+
+REDIS -> KEY_VALUE -> Lab1
+MongoDB -> Document oriented

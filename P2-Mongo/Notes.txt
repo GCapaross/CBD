@@ -1,0 +1,12 @@
+NOSQL Booster
+Run mongo server:
+    docker -compose up -d (opcional daemon)
+Run mongosh
+    docker-compose exec mongoDB mongosh
+
+
+pass: 5248
+template: checkout ...
+
+Consegue-se aplicar operadores nos queries na versao mais crude
+Podemos aplicar uma api de agregações
