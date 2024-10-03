@@ -1,0 +1,9 @@
+// NMEC: 113682
+
+// 1. Liste todos os documentos da coleção.
+   db.restaurants.find()
+// type "it" to present more since they aren't all showed at once in the terminal
+
+// 2. Apresente os campos restaurant_id, nome, localidade e gastronomia para todos os documentos da coleção.
+   db.restaurants.find({}, {restaurant_id: 1, nome: 1, localidade: 1, gastronomia: 1})
+// basically we apply an empty filter, because we want to return all documents but just those parameters

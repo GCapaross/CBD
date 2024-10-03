@@ -1,0 +1,57 @@
+# NMEC: 113682
+# CBD lab2 - Gabriel Santos
+
+Show dbs;
+use cbd;
+show collections;
+exit
+db.restaurants.count(); -> to see the imports after the command to import restaurants in readme
+
+
+test> show dbs;
+admin    40.00 KiB
+cbd     624.00 KiB
+config   60.00 KiB
+local    40.00 KiB
+test> use cbd;
+switched to db cbd
+cbd> show dbs;
+admin    40.00 KiB
+cbd     624.00 KiB
+config   60.00 KiB
+local    40.00 KiB
+cbd> show collections;
+restaurants
+cbd> db.restaurants.count();
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+3772
+cbd>
+
+
+Connect do mongo in vscode:
+    - Install extension
+    - After running: sudo docker-compose exec -it mongodb mongosh --db cbd
+    - Get: Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1
+
+
+#########################################################################################################################################
+
+➜  mongoimport --db cbd --collection restaurants --drop --file resources/restaurants.json
+2024-10-03T12:30:48.072+0100    connected to: mongodb://localhost/
+2024-10-03T12:30:48.072+0100    dropping: cbd.restaurants
+2024-10-03T12:30:48.344+0100    3772 document(s) imported successfully. 0 document(s) failed to import.
+
+
+Some commands:
+    CREATE; INSERT; DROP; UPDATE
+
+
+
+Notes:
+    Download - Command Line Database Tools
+    yay -S mongodb-bin
+    yay -S mongodb-tools-bin (So that we can use mongoimport)
+
+
+Links: https://www.tutorialspoint.com/mongodb/
+       https://docs.mongodb.com

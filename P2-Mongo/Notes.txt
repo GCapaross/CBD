@@ -1,8 +1,15 @@
 NOSQL Booster
+systemctl start docker
 Run mongo server:
-    docker -compose up -d (opcional daemon)
+    sudo docker -compose up -d (opcional daemon)
 Run mongosh
     docker-compose exec mongoDB mongosh
+
+Install mongo -> the installation of mongo in my case through "yay -S mongo" and it's tools can take up to 180gb compiling and 7 hours do finish
+I canceled it
+
+
+Docker ps -> to see active containers
 
 
 pass: 5248
