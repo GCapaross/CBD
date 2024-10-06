@@ -1,6 +1,8 @@
 # NMEC: 113682
 # CBD lab2 - Gabriel Santos
 
+# Be careful starting the container again
+
 Show dbs;
 use cbd;
 show collections;
@@ -51,6 +53,11 @@ Notes:
     Download - Command Line Database Tools
     yay -S mongodb-bin
     yay -S mongodb-tools-bin (So that we can use mongoimport)
+
+
+    sudo docker start lab2-mongodb-1
+    sudo docker exec -it lab2-mongodb-1 mongosh --port 27017 --db cbd
+
 
 
 Links: https://www.tutorialspoint.com/mongodb/

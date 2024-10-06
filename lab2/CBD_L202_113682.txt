@@ -1,9 +1,150 @@
 // NMEC: 113682
 
 // 1. Liste todos os documentos da coleção.
+
    db.restaurants.find()
+
 // type "it" to present more since they aren't all showed at once in the terminal
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 // 2. Apresente os campos restaurant_id, nome, localidade e gastronomia para todos os documentos da coleção.
    db.restaurants.find({}, {restaurant_id: 1, nome: 1, localidade: 1, gastronomia: 1})
+
 // basically we apply an empty filter, because we want to return all documents but just those parameters
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 3. Apresente os campos restaurant_id, nome, localidade e código postal (zipcode), mas exclua o campo _id de todos os documentos da coleção.
+
+   db.restaurants.find({}, {_id:0, restaurant_id: 1, nome: 1, localidade: 1, gastronomia: 1})
+
+// 0 not to show, 1 to show
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 4. Indique o total de restaurantes localizados no Bronx.
+
+   db.restaurants.find({ localidade: "Bronx" }).count();
+   db.restaurants.countDocuments({ localidade: "Bronx" })
+
+// We can use both ways
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 5. Apresente os primeiros 15 restaurantes localizados no Bronx, ordenados por ordem crescente de nome.
+
+   db.restaurants.find({localidade:"Bronx"}).sort({nome:1}).limit(15)
+
+//
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 6. Liste todos os restaurantes que tenham pelo menos um score superior a 85.
+
+   db.restaurants.find({grades: { $elemMatch: { score: { $gt: 85 } } } })
+   db.restaurants.find({"grades.score": { $gt: 85 }})
+
+// O elemMatch vai buscar elementos que tenham pelo menos um array dentro dele que cumpra com a condição
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 7. Encontre os restaurantes que obtiveram uma ou mais pontuações (score) entre [80 e 100].
+
+   db.restaurants.find({"grades.score": {$gte: 80,$lte: 100}})
+
+// Less than and greater than
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 8. Indique os restaurantes com latitude inferior a -95,7.
+
+   db.restaurants.find({"address.coord.0": { $lt: -95.7 }})
+
+//
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 9. Indique os restaurantes que não têm gastronomia "American", tiveram uma (ou mais) pontuação superior a 70 e estão numa latitude inferior a -65.
+
+   db.restaurants.find({ gastronomia: { $ne: "American" }, "grades.score": { $gt: 70 }, "address.coord.0": { $lt: -65 } })
+
+// ne -> not equal
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 10. Liste o restaurant_id, o nome, a localidade e gastronomia dos restaurantes cujo nome começam por "Wil".
+
+   db.restaurants.find({ nome: { $regex: /^Wil/ } }, { restaurant_id: 1, nome: 1, localidade: 1, gastronomia: 1 })
+
+// ^ Indicates the beginning of the string
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 11. Liste o nome, a localidade e a gastronomia dos restaurantes que pertencem ao Bronx e cuja gastronomia é do tipo "American" ou "Chinese".
+
+   db.restaurants.find({localidade: "Bronx", gastronomia: { $in: ["American", "Chinese"] }},{nome: 1, localidade: 1, gastronomia: 1})
+
+// $in -> dentro dum conjunto de valores, ou American ou Chinese
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 12. Liste o restaurant_id, o nome, a localidade e a gastronomia dos restaurantes localizados em "Staten Island", "Queens", ou "Brooklyn".
+
+   db.restaurants.find({ localidade: { $in: ["Staten Island", "Queens", "Brooklyn"] } }, { restaurant_id: 1, nome: 1, localidade: 1, gastronomia: 1 })
+
+//
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 13. Liste o nome, a localidade, o score e gastronomia dos restaurantes que alcançaram sempre pontuações inferiores ou igual a 3.
+
+   db.restaurants.find({ grades: { $not: { $elemMatch: { score: { $gt: 3 } } } } }, { nome: 1, localidade: 1, "grades.score": 1, gastronomia: 1 })
+
+// Todos os scores menores que 3? Ou returnar os scores menores que 3 e o respetivo restaurante?
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 14. Liste o nome e as avaliações dos restaurantes que obtiveram uma avaliação com um grade "A", um score 10 na data "2014-08-11T00: 00: 00Z" (ISODATE).
+
+   db.restaurants.find({ grades: { $elemMatch: { grade: "A", score: 10, date: ISODate("2014-08-11T00:00:00.000Z") } } }, { nome: 1, grades: 1 })
+
+// Mais facil usar elemMatch
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 15. Liste o restaurant_id, o nome e os score dos restaurantes nos quais a segunda avaliação foi grade "A" e ocorreu em ISODATE "2014-08-11T00: 00: 00Z".
+
+   db.restaurants.find({ "grades.1.grade": "A", "grades.1.date": ISODate("2014-08-11T00:00:00.000Z") }, { restaurant_id: 1, nome: 1, "grades.1.score": 1 })
+
+// A lista conta a partir do zero, daí grades.1
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 16. Liste o restaurant_id, o nome, o endereço (address) dos restaurantes onde o 2º elemento da matriz de coordenadas (coord) tem um valor superior a 42 e inferior ou igual a 52.
+
+   db.restaurants.find({ "address.coord.1": { $gt: 42, $lte: 52 } }, { restaurant_id: 1, nome: 1, address: 1 })
+
+//
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 17. Liste nome, gastronomia e localidade de todos os restaurantes ordenando por ordem crescente da gastronomia e, em segundo, por ordem decrescente de localidade.
+
+   db.restaurants.find({}, { nome: 1, gastronomia: 1, localidade: 1 }).sort({ gastronomia: 1, localidade: -1 })
+
+// Crescente 1 decrescente -1
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 18. Liste nome, localidade, grade e gastronomia de todos os restaurantes localizados em Brooklyn que não incluem gastronomia "American" e obtiveram uma classificação (grade) "A". Deve apresentá-los por ordem decrescente de gastronomia.
+
+   db.restaurants.find({ localidade: "Brooklyn", gastronomia: { $ne: "American" }, "grades.grade": "A" }, { nome: 1, localidade: 1, "grades.grade": 1, gastronomia: 1 }).sort({ gastronomia: -1 })
+
+//
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 19. Indique o número total de avaliações (numGrades) na coleção.
+
+   db.restaurants.aggregate([{ $unwind: "$grades" }, { $count: "numGrades" }])
+
+// unwind usa-se para desdobrar arrays e contar elementos individuais, o count é para dar o numero total de elementos dentro desse array
+// aggregate é para agregar/juntar todos os elementos para  acontagem
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 20. Apresente o nome e número de avaliações (numGrades) dos 3 restaurante com mais avaliações.
+
+   db.restaurants.aggregate([{ $project: { nome: 1, numGrades: { $size: "$grades" } } }, { $sort: { numGrades: -1 } }, { $limit: 3 }])
+
+// $project permite especificar os campos a incluir ou excluir e é usado na agregação para transformar a saída de documentos
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 21. Apresente o número total de avaliações (numGrades) em cada dia da semana.
+
+   db.restaurants.aggregate([{ $unwind: "$grades" },{ $group: { _id: { $dayOfWeek: "$grades.date" }, totalGrades: { $sum: 1 } } },{ $sort: { _id: 1 } }])
+
+// $unwid desdobra o array grades, para criar um documento separado para cada avaliaçao
+// $group agrupa os doccumentos por dia da semana ao usar $dayofweek e soma o numero total de avaliaçoes
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 22. Conte o total de restaurante existentes em cada localidade.
+
+   db.restaurants.aggregate([{ $group: { _id: "$localidade", totalRestaurantes: { $sum: 1 } } }])
+
+// Por convenção o mongodb usa _id para criar os grupos, e cada valor de _id vai ser distinto, no entanto posso nomear campos de agregação como quero, no caso de "totalRestaurantes"
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 23. Indique os restaurantes que têm gastronomia "Portuguese", o somatório de score é superior a 50 e estão numa latitude inferior a -60.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 24. Apresente o número de gastronomias diferentes na rua "Fifth Avenue"
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 25. Apresente o nome e o score médio (avgScore) e número de avaliações (numGrades) dos restaurantes com score médio superior a 30 desde 1-Jan-2014.
+--------------------------------------------------------------------------------------------------------------------------------------------
+// 26. .. 30. Descreva 5 perguntas adicionais à base dados (alíneas 26 a 30) significativamente distintas das anteriores, e apresente igualmente a solução de pesquisa para cada questão.
+
+
+// TODO
+--------------------------------------------------------------------------------------------------------------------------------------------
