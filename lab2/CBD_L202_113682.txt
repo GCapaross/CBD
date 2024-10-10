@@ -8,6 +8,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 // 2. Apresente os campos restaurant_id, nome, localidade e gastronomia para todos os documentos da coleção.
+
    db.restaurants.find({}, {restaurant_id: 1, nome: 1, localidade: 1, gastronomia: 1})
 
 // basically we apply an empty filter, because we want to return all documents but just those parameters
@@ -40,9 +41,17 @@
 --------------------------------------------------------------------------------------------------------------------------------------------
 // 7. Encontre os restaurantes que obtiveram uma ou mais pontuações (score) entre [80 e 100].
 
-   db.restaurants.find({"grades.score": {$gte: 80,$lte: 100}})
+   db.restaurants.find({"grades.score": {$gte:80, $lte:100}})    x -> exemplom estava a dar um restaurante com uma pontuação de 131 mas nenhuma entre 80 e 100
+   db.restaurants.find({$and:[{"grades.score":{$gt:80}},{"grades.score":{$lt:100}}]})  x -> Also doesn't work, because it compares 1 by one and returns true
 
+
+
+   db.restaurants.find({ grades: { $elemMatch: { score: { $gte: 80, $lte: 100} } }}, {nome:1 , "grades.score": 1})
+// -> This way works
+
+// elemMatch goes one by one, while the and operator will go visit grades in a general way and if theres a grade > 80 and a grade < 100 it returns true
 // Less than and greater than
+// and implicito no elemMatch
 --------------------------------------------------------------------------------------------------------------------------------------------
 // 8. Indique os restaurantes com latitude inferior a -95,7.
 
@@ -112,7 +121,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------
 // 19. Indique o número total de avaliações (numGrades) na coleção.
 
-   db.restaurants.aggregate([{ $unwind: "$grades" }, { $count: "numGrades" }])
+   db.restaurants.aggregate([{ $unwind: "$grades" }, { $count: "numGrades" }])   x -> outros operadores
 
 // unwind usa-se para desdobrar arrays e contar elementos individuais, o count é para dar o numero total de elementos dentro desse array
 // aggregate é para agregar/juntar todos os elementos para  acontagem
