@@ -76,6 +76,7 @@
    db.restaurants.find({localidade: "Bronx", gastronomia: { $in: ["American", "Chinese"] }},{nome: 1, localidade: 1, gastronomia: 1})
 
 // $in -> dentro dum conjunto de valores, ou American ou Chinese
+// can do with $or
 --------------------------------------------------------------------------------------------------------------------------------------------
 // 12. Liste o restaurant_id, o nome, a localidade e a gastronomia dos restaurantes localizados em "Staten Island", "Queens", ou "Brooklyn".
 

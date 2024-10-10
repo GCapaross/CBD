@@ -15,75 +15,48 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <!-- MongoDB Core Driver -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-core</artifactId>
-            <version>4.11.4</version>
-        </dependency>
+       <dependencies>
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-core</artifactId>
+        <version>4.11.4</version>
+    </dependency>
 
-        <!-- MongoDB Synchronous Driver -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.11.4</version>
-        </dependency>
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>4.11.4</version>
+    </dependency>
 
-        <!-- BSON library -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>bson</artifactId>
-            <version>4.11.4</version>
-        </dependency>
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>bson</artifactId>
+        <version>4.11.4</version>
+    </dependency>
+</dependencies>
+
         
-    </dependencies>
 
-    <build>
-        <plugins>
-            <!-- Maven Compiler Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
+   <build>
+    <plugins>
+        <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>3.1.0</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>java</goal>
+            </goals>
+            <configuration>
+                <mainClass>com.gabriel.cbd.lab2.ex3.Main</mainClass>
+                <classpathScope>runtime</classpathScope>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 
-            <!-- Maven Jar Plugin to specify main class -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>com.gabriel.cbd.lab2.ex3.Main</mainClass> <!-- Full path of your Main class -->
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+    </plugins>
+</build>
 
-            <!-- Exec Maven Plugin to run the Java program -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                        <configuration>
-                            <mainClass>com.gabriel.cbd.lab2.ex3.Main</mainClass> <!-- Full path of your Main class -->
-                            <classpathScope>runtime</classpathScope> <!-- Ensure runtime classpath is used -->
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

@@ -7,6 +7,8 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import com.gabriel.cbd.lab2.ex3.a.RestaurantA;
 import java.util.Arrays;
+import java.util.List;
+
 // import java.util.List;
 // Dont forget to start the docker and the mongodb server
 
