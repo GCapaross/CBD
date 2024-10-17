@@ -6,3 +6,5 @@ To check logs
 mvn exec:exec -Dexec.executable="java" -Dexec.args="-cp target/mongo-java-exercise-1.0-SNAPSHOT.jar com.gabriel.cbd.lab2.ex3.Main"
 Since mvn exec:java isn't working
 mvn exec:java -Dexec.mainClass="com.gabriel.cbd.lab2.ex3.Main"
+docker run -d -p 27017:27017 --name mongodb mongo
+docker-compose up -d
