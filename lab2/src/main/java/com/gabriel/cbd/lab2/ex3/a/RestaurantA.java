@@ -4,6 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
+import com.mongodb.client.result.*;
 
 
 import java.util.Arrays;
@@ -16,6 +17,9 @@ public class RestaurantA {
         this.mongoCollection = mongoCollection;
     }
 
+
+    // !! We could also create an object for the grades.
+    
     public void insertRestaurant(String nome, String localidade, String gastronomia, Document address, int score1, int score2) {
         Document newRestaurant = new Document("nome", nome)
                 .append("localidade", localidade)
@@ -26,21 +30,40 @@ public class RestaurantA {
                 ))
                 .append("address", address);
 
-        mongoCollection.insertOne(newRestaurant);
-        System.out.println("Restaurante inserido com sucesso!");
+        InsertOneResult insert = mongoCollection.insertOne(newRestaurant);
+        if (insert.wasAcknowledged()) {
+            System.out.println("Restaurante inserido com sucesso!");
+
+        }
+        else {
+            System.out.println("Restaurante não inserido");
+        }
+
     }
 
     public void updateRestaurantName(String oldName, String newName) {
-        mongoCollection.updateOne(
+        UpdateResult update_result = mongoCollection.updateOne(
                 Filters.eq("nome", oldName),
                 Updates.set("nome", newName)
         );
-        System.out.println("Nome do restaurante atualizado com sucesso!");
+        if (update_result.getModifiedCount() > 0)  {
+            System.out.println("Nome do restaurante atualizado com sucesso!");
+        }
+        else {
+            System.out.println("Nada modificado");
+        }
     }
 
     public void findRestaurantsByLocalidade(String localidade) {
         // We use the regular commands from mongo but apply .Filter as if it was {} with the condition inside
         for (Document doc : mongoCollection.find(Filters.eq("localidade", localidade))) {
+            System.out.println("Restaurante encontrado: " + doc.toJson());
+        }
+    }
+
+    // TODO: Autocomplete do search restaurant
+    public void findRestaurantsByName(String name)  {
+        for (Document doc : mongoCollection.find(Filters.eq("nome", name))) {
             System.out.println("Restaurante encontrado: " + doc.toJson());
         }
     }
