@@ -25,9 +25,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.model.*;
 
-import java.text.SimpleDateFormat;  
+import java.time.Instant;
 import java.util.Date;  
-import java.text.ParseException;
 import java.util.Arrays;
 
 public class AlineaC {
@@ -47,37 +46,33 @@ public class AlineaC {
         System.out.println("1 - ");
         System.out.println("Restaurants whose name starts with 'Wil':");
         for (Document doc : collection.find(Filters.regex("nome", "^Wil"))) {
-            System.out.println(doc.toJson());
+            System.out.println("Restaurant: " + doc.getString("restaurant_id") + " | " + doc.getString("nome") + " | " + 
+            doc.getString("localidade") + " | " + doc.getString("gastronomia"));
         }
     }
 
 
-    // !!! NOT WORKING 
     public void listRestaurantsWithGradeAOnDate() {
         System.out.println("\n");
         System.out.println("2 - ");
         System.out.println("Restaurants with the second evaluation grade 'A' on 2014-08-11:");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date targetDate = null;
-        try {
-            targetDate = dateFormat.parse("2014-08-11T00:00:00.000Z");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date date = Date.from(Instant.parse("2014-08-11T00:00:00Z"));
 
         Bson filter = Filters.and(
                 Filters.eq("grades.1.grade", "A"),
-                Filters.eq("grades.1.date", targetDate)
+                Filters.eq("grades.1.date", date)
         );
         // Probably could've done it like exercise 1, but did this to separate the steps better
         for (Document doc : collection.find(filter)) {
-            System.out.println(doc.toJson());
+            System.out.println("Restaurant: " + doc.getString("restaurant_id") + " | " + doc.getString("nome") + " | " +
+            doc.getList("grades", Document.class).stream().map(d -> d.getInteger("score")).toList());
         }
     }
        
     
-    // !!! NOT WORKING
+
+    // !!! Esta query acabou por ser muito grande por isso fiz umas alterações
     public void listBrooklynRestaurants() {
         System.out.println("\n");
         System.out.println("3 - ");
@@ -86,12 +81,13 @@ public class AlineaC {
         Filters.eq("localidade", "Brooklyn"),
         Filters.ne("gastronomia", "American"),
         Filters.eq("grades.grade", "A"),
-        //! Added name starting with C, because query was too long
-        Filters.eq("nome", "^C")
+        // !! Começados por "C"
+        Filters.regex("nome", "^C")
     );
     
     for (Document doc : collection.find(filter).sort(Sorts.descending("gastronomia"))) {
-        System.out.println(doc.toJson());
+        System.out.println("Restaurant: " + doc.getString("restaurant_id") + " | " + doc.getString("nome") + " | " + doc.getString("localidade") + " | " + doc.getString("gastronomia") + " | " +
+        doc.getList("grades", Document.class).stream().map(d -> d.getString("grade")).toList());
     }
     }
 
@@ -121,7 +117,7 @@ public class AlineaC {
         Aggregates.match(Filters.eq("address.rua", "Fifth Avenue")),
         Aggregates.group("$gastronomia"),
         Aggregates.count("numGastronomias")
-    )).first().getLong("numGastronomias");
+    )).first().getInteger("numGastronomias");
 
     System.out.println("Number of different cuisines: " + count);
     }

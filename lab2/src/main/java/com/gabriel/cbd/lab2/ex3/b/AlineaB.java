@@ -28,6 +28,8 @@ public class AlineaB {
         Thread.sleep(1000);
 
         searchWithIndex(); 
+
+        mongoClient.close();
     }
 
     private static void searchWithIndex() {
