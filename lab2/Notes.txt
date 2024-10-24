@@ -8,3 +8,21 @@ Since mvn exec:java isn't working
 mvn exec:java -Dexec.mainClass="com.gabriel.cbd.lab2.ex3.Main"
 docker run -d -p 27017:27017 --name mongodb mongo
 docker-compose up -d
+
+
+Run exercise:
+Start mongo
+systemctl start mongodb
+mvn exec:java -Dexec.mainClass="com.gabriel.cbd.lab2.ex3.Main"
+mvn exec:java -Dexec.mainClass="com.gabriel.cbd.lab2.ex3.b.MainB"
+
+Getting a problem with running threads in exercise 3 b).
+
+
+Alinea d) não é optimal estar a usar o distinct porque estaria outra vez a puxar todas as outras localidades, logo é preferivel fazer a contagem no servidor
+
+Decided to refactor the code, and now run every exercise in the main.
+
+Dont forget to have your db running
+docker start lab2-mongodb-1
+and if it gives you an error on the port have mongodb systemctl stop
