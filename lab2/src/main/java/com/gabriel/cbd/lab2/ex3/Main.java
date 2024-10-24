@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.gabriel.cbd.lab2.ex3.a.RestaurantA;
 import com.gabriel.cbd.lab2.ex3.b.AlineaB;
 import com.gabriel.cbd.lab2.ex3.c.AlineaC;
+import com.gabriel.cbd.lab2.ex3.d.RestaurantsDAO;
 
 // import java.util.List;
 // Dont forget to start the docker and the mongodb server
@@ -47,6 +48,7 @@ public class Main {
                 case 4:
                     System.out.println("################## Running Alinea D ##################");
                     System.out.println("\n");
+                    RestaurantsDAO.main(args);
                     break;
                 case 0:
                     System.out.println("Exiting...");
