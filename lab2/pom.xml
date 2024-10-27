@@ -15,7 +15,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
        <dependencies>
+
+
+               <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>4.3.2</version> 
+        </dependency>
     <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongodb-driver-core</artifactId>
@@ -68,6 +76,17 @@
                         </goals>
                         <configuration>
                             <mainClass>com.gabriel.cbd.lab2.ex4.OrderServiceB</mainClass>
+                            <classpathScope>runtime</classpathScope>
+                        </configuration>
+                        
+                    </execution>
+                    <execution>
+                        <id>run-main-class4</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.gabriel.cbd.lab2.ex4.OrderServiceC</mainClass> 
                             <classpathScope>runtime</classpathScope>
                         </configuration>
                     </execution>

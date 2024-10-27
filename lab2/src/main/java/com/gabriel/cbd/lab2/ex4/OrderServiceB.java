@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+
 public class OrderServiceB {
     private static final int ORDER_LIMIT = 20;           
     private static final int ORDER_TIMESLOT = 30;        
@@ -31,6 +32,9 @@ public class OrderServiceB {
     }
 
     public void placeOrder(String username, String productId, int quantity) {
+
+        // ! Comment after testing
+        Instant startTime = Instant.now();
         Product2 product = productCatalog.get(productId);
         if (product == null) {
             System.out.println("Product with ID " + productId + " doesn’t exist.");
@@ -56,6 +60,10 @@ public class OrderServiceB {
             product.decreaseQuantity(quantity);
             System.out.println("Order for " + quantity + " units of " + product.getName() + " placed successfully for " + username);
         }
+
+        // ! Comment after testing
+        long duration = Duration.between(startTime, Instant.now()).toMillis(); // Duração da operação
+    System.out.println("Time taken to place order in MongoDB: " + duration + " ms");
     }
 
     public void listProducts() {

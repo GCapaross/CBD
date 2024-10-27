@@ -1,0 +1,38 @@
+Redis: Utiliza para dados, strings, listas, conjuntos, hashses- É bom no que se trata de operações rápidas e consultas não complexas.
+MongoDB: Orientado a documentos, armazena os dados em BSON. É melhor para operações complexas.
+
+Redis: Dados guardados em memória (mais rápido)
+MongoDB: Dados guardados em disco
+
+Pros: Rapidez (redis); diferentes estruturas de dados (redis), consultas complexas (MongoDB), mais persistente (MongoDB)
+Contras: Dados pouco complexos (redis), pior escalabilidade (MongoDB), pior em operações simples (MongoDB)
+
+
+###### MONGODB TEST ######
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 2
+Username: time
+Product ID: 5
+Quantity: 20
+Order for 20 units of ProductB5 placed successfully for time
+Time taken to place order in MongoDB: 100 ms
+
+
+
+###### REDIS TEST ######
+Redis data has been reset.
+Enter your username (or type 'list' to see registered users, 'stop' to quit): tIME
+Available products:
+1. Laptop (Stock: 30)
+2. Smartphone (Stock: 30)
+3. Tablet (Stock: 30)
+4. Headphones (Stock: 30)
+5. Smartwatch (Stock: 30)
+Choose the product number: 3
+Enter the quantity: 20
+Time taken to place order in Redis: 3 ms
+Order placed successfully!

@@ -1,0 +1,90 @@
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 1
+Products Available:
+ID: 1, Product: ProductB1, Stock: 50
+ID: 2, Product: ProductB2, Stock: 50
+ID: 3, Product: ProductB3, Stock: 50
+ID: 4, Product: ProductB4, Stock: 50
+ID: 5, Product: ProductB5, Stock: 50
+ID: 6, Product: ProductB6, Stock: 50
+ID: 7, Product: ProductB7, Stock: 50
+ID: 8, Product: ProductB8, Stock: 50
+ID: 9, Product: ProductB9, Stock: 50
+ID: 10, Product: ProductB10, Stock: 50
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 2
+Username: Joao
+Product ID: 1
+Quantity: 30
+Order limit reached for Joao. You can only order up to 20 more units in this time window.
+Please wait 0 more minutes before ordering more units.
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 3
+
+Orders by User:
+User: gabriel
+All clear! You can still order 18 units in this time window.
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 2
+Username: Joao
+Product ID: 2
+Quantity: 20
+Order for 20 units of ProductB2 placed successfully for Joao
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 1
+Products Available:
+ID: 1, Product: ProductB1, Stock: 50
+ID: 2, Product: ProductB2, Stock: 30
+ID: 3, Product: ProductB3, Stock: 50
+ID: 4, Product: ProductB4, Stock: 50
+ID: 5, Product: ProductB5, Stock: 50
+ID: 6, Product: ProductB6, Stock: 50
+ID: 7, Product: ProductB7, Stock: 50
+ID: 8, Product: ProductB8, Stock: 50
+ID: 9, Product: ProductB9, Stock: 50
+ID: 10, Product: ProductB10, Stock: 50
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 3
+
+Orders by User:
+User: Joao
+Hold up! You’ve ordered the max units. Wait 29 more minutes to order again.
+User: gabriel
+All clear! You can still order 18 units in this time window.
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 0
+Exiting...

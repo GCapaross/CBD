@@ -12,7 +12,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class OrderServiceA {
-    private static final int LIMIT = 30;           
+    private static final int LIMIT = 3;           
     private static final int TIMESLOT = 60;        
     private final MongoCollection<Document> ordersCollection;
     private final Map<String, Product> productCatalog;

@@ -1,0 +1,100 @@
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 1
+Products Available:
+ID: 1, Product: Product1, Stock: 50
+ID: 2, Product: Product2, Stock: 50
+ID: 3, Product: Product3, Stock: 50
+ID: 4, Product: Product4, Stock: 50
+ID: 5, Product: Product5, Stock: 50
+ID: 6, Product: Product6, Stock: 50
+ID: 7, Product: Product7, Stock: 50
+ID: 8, Product: Product8, Stock: 50
+ID: 9, Product: Product9, Stock: 50
+ID: 10, Product: Product10, Stock: 50
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 3
+
+Orders by User:
+User: gabriel
+All good! You can place more orders.
+User: Gabriel
+All good! You can place more orders.
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 2
+Username: gabriel
+Product ID: 1
+Product1 has been ordered successfully for gabriel
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 3
+
+Orders by User:
+User: gabriel
+All good! You can place more orders.
+User: Gabriel
+All good! You can place more orders.
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 2
+Username: gabriel
+Product ID: 2
+Product2 has been ordered successfully for gabriel
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 2
+Username: gabriel
+Product ID: 3
+Product3 has been ordered successfully for gabriel
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 3
+
+Orders by User:
+User: gabriel
+Chill! Wait 59 more minutes to order again.
+User: Gabriel
+All good! You can place more orders.
+
+Choose an option:
+1. Products list
+2. Place order
+3. List user orders
+0. Exit
+Option: 0
+Exiting...
+
+
+
+
+# I set the limit for 3 orders, after that I printed the time left until I could make more 3 orders
+# In this case I already had created users due to testing, and I decided to not clear the database everytime I started the program

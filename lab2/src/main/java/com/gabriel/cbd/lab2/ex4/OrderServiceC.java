@@ -1,9 +1,17 @@
 package com.gabriel.cbd.lab2.ex4;
 
 import redis.clients.jedis.Jedis;
+
+import java.time.Instant;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+
+// ! Comment after testing
+import java.time.Duration;
+
+// Exercicio tirado do lab anterior
 
 public class OrderServiceC {
 
@@ -11,6 +19,11 @@ public class OrderServiceC {
     private static final int TIMESLOT = 3600; // 60 minutes in seconds
 
     public static String placeOrder(Jedis jedis, String username, String productId, int quantity) {
+
+
+        // ! Comment after testing 
+        Instant startTime = Instant.now();
+
         String userKey = "user:" + username;
 
         long currentOrders = jedis.llen(userKey);
@@ -47,6 +60,13 @@ public class OrderServiceC {
 
         jedis.sadd("registered_users", username);
 
+
+
+        // ! Comment after testing
+
+        long duration = Duration.between(startTime, Instant.now()).toMillis(); 
+        System.out.println("Time taken to place order in Redis: " + duration + " ms");
+    
         return "Order placed successfully!";
     }
 
