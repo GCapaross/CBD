@@ -37,15 +37,15 @@ public class AlineaB {
         long start = System.currentTimeMillis();
 
         for (Document doc : collection.find(new Document("localidade", "Brooklyn"))) {
-            System.out.println("Restaurante encontrado (com índice - localidade): " + doc.toJson());
+            //System.out.println("Restaurante encontrado (com índice - localidade): " + doc.toJson());
         }
 
         for (Document doc : collection.find(new Document("gastronomia", "Americana"))) {
-            System.out.println("Restaurante encontrado (com índice - gastronomia): " + doc.toJson());
+            //System.out.println("Restaurante encontrado (com índice - gastronomia): " + doc.toJson());
         }
 
         for (Document doc : collection.find(new Document("$text", new Document("$search", "McDonald's")))) {
-            System.out.println("Restaurante encontrado (com índice - nome): " + doc.toJson());
+            //System.out.println("Restaurante encontrado (com índice - nome): " + doc.toJson());
         }
 
         long end = System.currentTimeMillis();
@@ -57,15 +57,15 @@ public class AlineaB {
         long start = System.currentTimeMillis();
 
         for (Document doc : collection.find(new Document("localidade", "Brooklyn"))) {
-            System.out.println("Restaurante encontrado: " + doc.toJson());
+            //System.out.println("Restaurante encontrado: " + doc.toJson());
         }
 
         for (Document doc : collection.find(new Document("gastronomia", "Americana"))) {
-            System.out.println("Restaurante encontrado: " + doc.toJson());
+            //System.out.println("Restaurante encontrado: " + doc.toJson());
         }
 
         for (Document doc : collection.find(new Document("nome", ""))) {
-            System.out.println("Restaurante encontrado: " + doc.toJson());
+            //System.out.println("Restaurante encontrado: " + doc.toJson());
         }
 
         long end = System.currentTimeMillis();
