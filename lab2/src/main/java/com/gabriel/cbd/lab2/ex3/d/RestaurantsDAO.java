@@ -38,11 +38,19 @@ public class RestaurantsDAO {
         return count;
     }
     public List<String> getRestWithNameCloserTo(String name) {
-    List<String> restaurants = new ArrayList<>();
-    Pattern regex = Pattern.compile(".*" + Pattern.quote(name) + ".*", Pattern.CASE_INSENSITIVE);
-    mongoCollection.find(new Document("name", regex)).forEach(doc -> restaurants.add(doc.getString("name")));
-    return restaurants;
-}
+        List<String> matchingRestaurants = new ArrayList<>();
+        
+        Pattern regex = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
+        
+        Document filter = new Document("nome", regex);
+    
+        for (Document doc : mongoCollection.find(filter)) {
+            matchingRestaurants.add(doc.getString("nome"));
+        }
+    
+        return matchingRestaurants;
+    }
+    
 
 
     public static void main(String[] args) {
@@ -61,9 +69,9 @@ public class RestaurantsDAO {
         System.out.println("#######################################################################################\n");
 
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Enter a name to search for restaurants containing it: ");
-        String inputName = scanner.nextLine();
+        String inputName = sc.nextLine();
         List<String> matchingRestaurants = restaurantsDAO.getRestWithNameCloserTo(inputName);
 
         System.out.println("Nome de restaurantes contendo '" + inputName + "' no nome:");
@@ -71,6 +79,8 @@ public class RestaurantsDAO {
             System.out.println("-> " + restaurant);
         }
 
-        scanner.close();
+        sc.close();
+        mongoClient.close();
+        System.exit(0);
     }
 }

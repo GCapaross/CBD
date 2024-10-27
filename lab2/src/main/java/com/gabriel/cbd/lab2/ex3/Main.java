@@ -46,8 +46,8 @@ public class Main {
                    break;
                 case 4:
                     System.out.println("################## Running Alinea D ##################");
-                    System.out.println("\n");
                     RestaurantsDAO.main(args);
+                    System.out.println("\n");
                     break;
                 case 0:
                     System.out.println("Exiting...");
