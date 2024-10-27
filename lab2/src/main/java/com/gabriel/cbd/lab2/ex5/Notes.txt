@@ -1,0 +1,17 @@
+a)
+First initialize mongo
+load("./resources/populatePhones.js")
+test:
+populatePhones(351, 1, 5)
+b)
+db.phones.drop()
+populatePhones(351, 1, 200000)
+db.phones.count()
+db.phones.find().limit(5).pretty()
+c)
+d)
+const uniqueDigitsFound = findUniqueDigits();
+print(uniqueDigitsFound);
+
+
+
