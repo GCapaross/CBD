@@ -34,29 +34,46 @@
         <version>4.11.4</version>
     </dependency>
 </dependencies>
-
-        
-
-   <build>
-    <plugins>
-        <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>exec-maven-plugin</artifactId>
-    <version>3.1.0</version>
-    <executions>
-        <execution>
-            <goals>
-                <goal>java</goal>
-            </goals>
-            <configuration>
-                <mainClass>com.gabriel.cbd.lab2.ex3.Main</mainClass>
-                <classpathScope>runtime</classpathScope>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-
-    </plugins>
-</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>run-main-class1</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.gabriel.cbd.lab2.ex3.Main</mainClass>
+                            <classpathScope>runtime</classpathScope>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>run-main-class2</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.gabriel.cbd.lab2.ex4.OrderServiceA</mainClass>
+                            <classpathScope>runtime</classpathScope>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>run-main-class3</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.gabriel.cbd.lab2.ex4.OrderServiceB</mainClass>
+                            <classpathScope>runtime</classpathScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

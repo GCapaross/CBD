@@ -20,9 +20,8 @@ public class Main {
             System.out.println("4 - Alinea D");
             System.out.println("0 - Exit");
 
-            // Read the user's choice
             int choice = sc.nextInt();
-            sc.nextLine(); // Consume the leftover newline character
+            sc.nextLine();
 
             switch(choice) {
                case 1:
