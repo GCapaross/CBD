@@ -18,6 +18,9 @@ Open `cqlsh` on the container:
 Destroy the cassandra server
 `docker-compose down -v`
 
+Stop the container
+`docker stop cassandra cqlsh`
+
 ## Java
 
 This project uses Maven Wrapper.

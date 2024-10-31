@@ -1,0 +1,6 @@
+- Template "docker" enviado por email
+- Fazer de forma iterativa, porque as queries e o esquema dependem muito um do outro
+- 4 aulas
+- Ignorar última página sobre Lab4
+- [OBRIGATÓRIO] Formatar as queries CQL em condições -> Sem OneLiners
+- [EVITAR] ao máximo usar Allow Filtering
