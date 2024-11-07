@@ -4,3 +4,20 @@
 - Ignorar última página sobre Lab4
 - [OBRIGATÓRIO] Formatar as queries CQL em condições -> Sem OneLiners
 - [EVITAR] ao máximo usar Allow Filtering
+
+
+➜ docker exec -it lab3-cassandra-1 bash
+root@164443d0ff10:/# cassandra
+Running Cassandra as root user or group is not recommended - please start Cassandra using a different system user.
+If you really want to force running Cassandra as root, use -R command line option.
+root@164443d0ff10:/# cqlsh
+Connected to Test Cluster at 127.0.0.1:9042
+[cqlsh 6.1.0 | Cassandra 4.1.7 | CQL spec 3.4.6 | Native protocol v5]
+Use HELP for help.
+cqlsh>
+
+
+
+or
+-> docker start lab3-cassandra-1
+-> docker-compose exec cassandra cqlsh

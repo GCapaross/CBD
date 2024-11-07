@@ -1,0 +1,69 @@
+
+
+
+CREATE KEYSPACE example_keyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+# O replication factor é para garantir que há redundância de dados em pelo menos 3 nós (característica de cassandra devido à sua estrututra)
+
+RESPONSTA: cqlsh> CREATE KEYSPACE example_keyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
+
+Warnings :
+Your replication factor 3 for keyspace example_keyspace is higher than the number of nodes 1
+
+
+USE example_keyspace;
+# Escolhemos o example_keyspace que vamos usar que é o mesmo que uma db em sql
+
+RESPOSTA: cqlsh> USE example_keyspace ;
+cqlsh:example_keyspace> 
+
+
+CREATE TABLE example_keyspace.usuarios (
+    id UUID PRIMARY KEY,
+    nome TEXT,
+    idade INT,
+    cidade TEXT
+);
+
+INSERT INTO example_keyspace.usuarios (id, nome, idade, cidade) VALUES (uuid(), 'Alice', 30, 'Lisboa');
+INSERT INTO example_keyspace.usuarios (id, nome, idade, cidade) VALUES (uuid(), 'Bruno', 25, 'Porto');
+INSERT INTO example_keyspace.usuarios (id, nome, idade, cidade) VALUES (uuid(), 'Carla', 28, 'Coimbra');
+
+# uuid usa-se para gerar um identificador único para a coluna id.
+
+SELECT * FROM example_keyspace.usuarios;
+
+# Como em sql um select simples
+
+RESPOSTA:
+cqlsh:example_keyspace> SELECT * FROM example_keyspace.usuarios;
+
+ id                                   | cidade  | idade | nome
+--------------------------------------+---------+-------+-------
+ 00ae1ed4-15cc-44ed-aba9-b59e1b1e1f3c | Coimbra |    28 | Carla
+ 8bef988a-75ce-47e2-9a2a-b4ccd04d95af |  Lisboa |    30 | Alice
+ 4b50948d-58f8-4fd9-a91b-adac7696db68 |   Porto |    25 | Bruno
+
+(3 rows)
+
+
+UPDATE example_keyspace.usuarios SET idade = 31 WHERE id = id_alice;
+
+# Este id alice corresponderia ao id que iriamos obter atraves do select
+
+DELETE FROM example_keyspace.usuarios WHERE id = id_alice;
+
+
+DROP TABLE example_keyspace.usuarios;
+-- Comentário: Remove a tabela `usuarios` do example_keyspace `example_keyspace`. Use com cuidado, pois todos os dados são perdidos permanentemente.
+
+
+DROP KEYSPACE example_keyspace;
+
+-- Even if I don't drop the tables or datas first, when dropping the keyspace it drops everything else 
+1 - Cascade deletion
+2 - Irreversible drop 
+
+
+
+
+"Describe column families" --> command to see all tables
