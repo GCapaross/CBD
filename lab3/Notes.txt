@@ -21,3 +21,9 @@ cqlsh>
 or
 -> docker start lab3-cassandra-1
 -> docker-compose exec cassandra cqlsh
+
+
+A ideia é ir mudando o modelo da base de dados para conseguir resolver as queries todas.
+Em vez de criar indíces, criar outra tabela.
+
+Inserting data subscribes
