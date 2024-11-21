@@ -26,25 +26,28 @@ CREATE TABLE SistemaPartilhaVideos.User(
 - Tabela para videos
 ```bash
 CREATE TABLE SistemaPartilhaVideos.Videos(
-    video_id UUID PRIMARY KEY,
-    user UUID, -- Autor da partilha é o user
+    video_id UUID,
+    author_id UUID, -- Autor da partilha é o user
     nome_video TEXT,
     descricao TEXT,
     tags LIST<TEXT>,
     upload_date TIMESTAMP
+    PRIMARY KEY (author_id, video_id)
 );
+CREATE INDEX ON SistemaPartilhaVideos.Videos (tags);
 ```
 
 - Tabela comentários
 ```bash
-CREATE TABLE SistemaPartilhaVideos.Commments(
+CREATE TABLE SistemaPartilhaVideos.Comments(
     video_id UUID,
     comment_id UUID,
     user_id UUID,
     comment_date TIMESTAMP,
     comment_content TEXT,
-    PRIMARY KEY (video_id, comment_id)
-);
+    PRIMARY KEY (video_id, comment_date, user_id)
+) WITH CLUSTERING ORDER BY (comment_date DESC, user_id DESC);
+CREATE INDEX ON SistemaPartilhaVideos.Comments (user_id);
 ```
 
 - Tabela video followers
@@ -72,11 +75,13 @@ CREATE TABLE SistemaPartilhaVideos.RegistEvents(
     video_time_seconds INT,  
     PRIMARY KEY (video_id, user_id, event_timestamp)
 );
+CREATE INDEX ON SistemaPartilhaVideos.RegistEvents (user_id);
+CREATE INDEX ON SistemaPartilhaVideos.RegistEvents (event_type);
 ```
 
 - Tabela para ratings
 
-
+```No Cassandra, não há suporte direto para constraints como em bancos relacionais (como CHECK para valores em intervalos específicos). No entanto, esse tipo de validação geralmente é implementado na camada de aplicação, garantindo que apenas valores entre 1 e 5 sejam inseridos. Em Cassandra, colunas não obrigatórias (ou opcionais) são definidas implicitamente, pois o Cassandra permite NULL em qualquer coluna que não faça parte da chave primária.```
 ```bash
 CREATE TABLE SistemaPartilhaVideos.VideoRatings (
     video_id UUID,
@@ -99,7 +104,7 @@ CREATE TABLE SistemaPartilhaVideos.VideoNotifications (
 ```
 
 
-- Comments by Video
+<!-- - Comments by Video
 ```bash
 CREATE TABLE SistemaPartilhaVideos.CommentsByVideo (
     video_id UUID,
@@ -109,19 +114,21 @@ CREATE TABLE SistemaPartilhaVideos.CommentsByVideo (
     comment_content TEXT,
     PRIMARY KEY (video_id, comment_date, comment_id)
 ) WITH CLUSTERING ORDER BY (comment_date DESC);
-```
+``` -->
 
-- Comments by User
+
+- Already have it...
+<!-- - Comments by User
 ```bash
 CREATE TABLE SistemaPartilhaVideos.CommentsByUser (
-    user_id UUID,
+    author_id UUID,
     video_id UUID,
     comment_id UUID,
     comment_date TIMESTAMP,
     comment_content TEXT,
     PRIMARY KEY (user_id, comment_date, comment_id)
 ) WITH CLUSTERING ORDER BY (comment_date DESC);
-```
+``` -->
 
 - Video ratings by Video
 ```bash

@@ -31,22 +31,24 @@ CREATE TABLE SistemaPartilhaVideos.User(
 );
 
 CREATE TABLE SistemaPartilhaVideos.Videos(
-    video_id UUID PRIMARY KEY,
-    user UUID, -- Autor da partilha é o user
+    video_id UUID,
+    author_id UUID, -- Autor da partilha é o user
     nome_video TEXT,
     descricao TEXT,
     tags LIST<TEXT>,
     upload_date TIMESTAMP
+    PRIMARY KEY (author_id, video_id)
 );
 
-CREATE TABLE SistemaPartilhaVideos.Commments(
+CREATE TABLE SistemaPartilhaVideos.Comments(
     video_id UUID,
     comment_id UUID,
     user_id UUID,
     comment_date TIMESTAMP,
     comment_content TEXT,
-    PRIMARY KEY (video_id, comment_id)
-);
+    PRIMARY KEY (video_id, comment_date, user_id)
+) WITH CLUSTERING ORDER BY (comment_date DESC, user_id DESC);
+CREATE INDEX ON SistemaPartilhaVideos.Comments (user_id);
 
 CREATE TABLE SistemaPartilhaVideos.VideoFollowers(
     video_id UUID,
@@ -116,7 +118,7 @@ with open("insert_data2.cql", "w") as file:
     # Insert data into `Videos`
     for i in range(1, num_videos + 1):
         video_id = random_uuid()
-        user_id = random_uuid()
+        author_id = random_uuid()
         nome_video = f"Video {i}"
         descricao = random_text()
         tags = random_tags()
@@ -130,7 +132,7 @@ with open("insert_data2.cql", "w") as file:
         user_id = random_uuid()
         comment_date = random_timestamp()
         comment_content = random_text()
-        file.write(f"INSERT INTO SistemaPartilhaVideos.Commments (video_id, comment_id, user_id, comment_date, comment_content) VALUES ({video_id}, {comment_id}, {user_id}, '{comment_date}', '{comment_content}');\n")
+        file.write(f"INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES ({video_id}, {comment_id}, {user_id}, '{comment_date}', '{comment_content}');\n")
 
     # Insert data into `VideoFollowers`
     for _ in range(num_followers):

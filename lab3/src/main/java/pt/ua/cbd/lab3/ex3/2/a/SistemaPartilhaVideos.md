@@ -1,3 +1,6 @@
+# THIS FILE DOESN'T HAVE THE CHANGES CORRESPONDING TO THE QUERIES OR THE POINTS .7 / .8 / .9 / .10
+
+
 ## Create keyspace
 
 ```bash
@@ -24,25 +27,28 @@ CREATE TABLE SistemaPartilhaVideos.User(
 - Tabela para videos
 ```bash
 CREATE TABLE SistemaPartilhaVideos.Videos(
-    video_id UUID PRIMARY KEY,
-    user UUID, -- Autor da partilha é o user
+    video_id UUID,
+    author_id UUID, -- Autor da partilha é o user
     nome_video TEXT,
     descricao TEXT,
     tags LIST<TEXT>,
     upload_date TIMESTAMP
+    PRIMARY KEY (author_id, video_id)
 );
+CREATE INDEX ON SistemaPartilhaVideos.Videos (tags);
 ```
 
 - Tabela comentários
 ```bash
-CREATE TABLE SistemaPartilhaVideos.Commments(
+CREATE TABLE SistemaPartilhaVideos.Comments(
     video_id UUID,
     comment_id UUID,
     user_id UUID,
     comment_date TIMESTAMP,
     comment_content TEXT,
-    PRIMARY KEY (video_id, comment_id)
-);
+    PRIMARY KEY (video_id, comment_date, user_id)
+) WITH CLUSTERING ORDER BY (comment_date DESC, user_id DESC);
+CREATE INDEX ON SistemaPartilhaVideos.Comments (user_id);
 ```
 
 - Tabela video followers
@@ -95,3 +101,4 @@ CREATE TABLE SistemaPartilhaVideos.VideoNotifications (
     PRIMARY KEY (follower_id, notification_id)
 ) WITH CLUSTERING ORDER BY (notification_id DESC);
 ```
+
