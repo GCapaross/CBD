@@ -27,3 +27,6 @@ A ideia é ir mudando o modelo da base de dados para conseguir resolver as queri
 Em vez de criar indíces, criar outra tabela.
 
 Inserting data subscribes
+
+docker exec -it lab3-cassandra-1 nodetool status
+TO know the cassandra datacenter
