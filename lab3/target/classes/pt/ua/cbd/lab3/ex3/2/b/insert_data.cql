@@ -18,16 +18,20 @@ CREATE TABLE SistemaPartilhaVideos.User(
     resgist_date TIMESTAMP
 );
 
-CREATE TABLE SistemaPartilhaVideos.Videos(
+CREATE TABLE SistemaPartilhaVideos.Videos (
     video_id UUID,
-    author_id UUID, -- Autor da partilha é o user
+    author_id UUID,
     nome_video TEXT,
     descricao TEXT,
     tags LIST<TEXT>,
     upload_date TIMESTAMP,
-    PRIMARY KEY (author_id, video_id)
-);
+    PRIMARY KEY (author_id, upload_date, video_id)
+) WITH CLUSTERING ORDER BY (upload_date DESC);
+
+
 CREATE INDEX ON SistemaPartilhaVideos.Videos (tags);
+
+
 
 
 CREATE TABLE SistemaPartilhaVideos.Comments(
@@ -111,10 +115,10 @@ INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descr
 INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (6bbb9426-9b74-4d95-9a24-6b354130f577, 6d21f0c3-18b1-49aa-b35a-c53bd835b75e, 'Video 3', 'beautiful great beautiful', ['tag4', 'tag7'], '2024-10-15T11:57:32.202910');
 INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (07c2674c-014f-4edd-99de-fd0b68cf84d1, f893cdc2-5c81-4b10-b890-b8fbf2d4353a, 'Video 4', 'interesting wonderful cool', ['tag4', 'tag3', 'tag13'], '2024-10-14T11:57:32.202946');
 INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (6e7dfbf6-96cd-4dbf-b8b4-3b186d93c312, f0d1809b-22a8-4f96-a150-3b8e4684c850, 'Video 5', 'amazing great cool', ['tag6', 'tag1'], '2024-09-13T11:57:32.202981');
-INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (a47a733c-bfa2-4766-8766-808ea6d55556, 23e7b491-b2eb-47a1-a79d-dff80e695eca, 'Video 6', 'interesting cool interesting', ['tag7', 'tag3', 'tag5'], '2024-11-06T11:57:32.203024');
-INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (d1a66d89-7d69-4ddf-8ce2-ce33261d7648, 6d97cf9c-f1bf-4ffa-9ce0-5869537ae733, 'Video 7', 'cool beautiful cool', ['tag1', 'tag8'], '2024-09-07T11:57:32.203100');
-INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (a58efcaa-fe64-4b73-a422-68b69b43f634, dfda25ba-b938-48a9-b404-1921760df6ee, 'Video 8', 'amazing beautiful wonderful', ['tag6', 'tag7'], '2024-08-28T11:57:32.203448');
-INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (71ddd58b-7842-4395-9c56-25888d7c2a65, ccbdd2b7-3757-4c99-835a-32e1f84e9f1c, 'Video 9', 'beautiful beautiful interesting', ['tag7'], '2024-10-01T11:57:32.203501');
+INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (a47a733c-bfa2-4766-8766-808ea6d55556, 24dc7f54-ec4a-4d84-9521-f2a03ac435e8, 'Video 6', 'interesting cool interesting', ['tag7', 'tag3', 'tag5'], '2024-11-06T11:57:32.203024');
+INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (d1a66d89-7d69-4ddf-8ce2-ce33261d7648, 24dc7f54-ec4a-4d84-9521-f2a03ac435e8, 'Video 7', 'cool beautiful cool', ['tag1', 'tag8'], '2024-09-07T11:57:32.203100');
+INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (a58efcaa-fe64-4b73-a422-68b69b43f634, 24dc7f54-ec4a-4d84-9521-f2a03ac435e8, 'Video 8', 'amazing beautiful wonderful', ['tag6', 'tag7'], '2024-08-28T11:57:32.203448');
+INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (71ddd58b-7842-4395-9c56-25888d7c2a65, 24dc7f54-ec4a-4d84-9521-f2a03ac435e8, 'Video 9', 'beautiful beautiful interesting', ['tag7'], '2024-10-01T11:57:32.203501');
 INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (a8768398-dcb0-4172-87df-f040a056b058, c0c9df7c-cf60-4b0d-8852-bffdb19af945, 'Video 10', 'amazing cool awesome', ['tag6', 'tag13'], '2024-10-06T11:57:32.203544');
 INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (08a09e39-46ac-4000-a10a-a51a4af1582b, aa61476e-7940-414b-a623-e1c7507a456e, 'Video 11', 'beautiful beautiful amazing', ['tag11', 'tag15', 'tag3'], '2024-10-17T11:57:32.203589');
 INSERT INTO SistemaPartilhaVideos.Videos (video_id, author_id, nome_video, descricao, tags, upload_date) VALUES (ef29ce46-3fec-4b1c-9f31-f3098ae323ce, 88f289ec-053f-4ce1-b75b-c01e2439ee86, 'Video 12', 'awesome awesome beautiful', ['tag4', 'tag9', 'tag10'], '2024-10-09T11:57:32.203631');
@@ -147,13 +151,13 @@ INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comme
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (9770d20f-6c4c-455f-b787-2b28342b18b4, f5c4e62a-6d54-4315-806b-421a0e3f3df9, 6678893d-ed61-4596-910c-ee6488e87439, '2024-09-08T11:57:32.204704', 'cool awesome great');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (6aeea33a-2a5e-42fe-8d92-127bb36fe44d, 76df841b-9f25-4913-b5bb-103441aeeee4, 498113da-71e7-40ac-a4e3-aaec9c74b625, '2024-08-28T11:57:32.204725', 'amazing amazing amazing');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (5861e411-6d71-49ab-9274-aeb0a895b196, 70feeace-4aa1-471c-b7fe-cf723e89aa6c, f632970f-abbc-4cd3-9111-9d4a6b9386ce, '2024-09-03T11:57:32.204748', 'great great amazing');
-INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (0f5e1ebe-f17d-4f92-a34d-8bd6763c089c, 877cdf5f-73d9-45fb-9908-5ab27d527b18, 1678e644-16d5-4063-836c-41eae1ea16f2, '2024-08-31T11:57:32.204771', 'wonderful awesome cool');
+INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (123e4567-e89b-12d3-a456-426614174000, 877cdf5f-73d9-45fb-9908-5ab27d527b18, 1678e644-16d5-4063-836c-41eae1ea16f2, '2024-08-31T11:57:32.204771', 'wonderful awesome cool');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (4cb9f827-b49b-4a4a-83a6-79b072317f28, 12143757-3d24-450f-b00e-8d4a144fe7f1, f53e883b-c6c7-4a01-9490-7c394868ae34, '2024-09-30T11:57:32.204796', 'wonderful interesting wonderful');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (490aff3d-bfaa-4611-9913-6f9a43831717, ba51a413-94d3-44e0-8fb6-f9bc1fb411dd, 6400cc67-5fb6-41a1-8e50-2069566a771f, '2024-10-20T11:57:32.204969', 'awesome wonderful cool');
-INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (817fa90e-8e62-46f8-9595-735938f64679, 9f160df6-72e1-4fe5-bb11-602d45d9c094, bda25c53-9aee-4376-b163-54689a06fda1, '2024-10-19T11:57:32.205039', 'great cool amazing');
+INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (123e4567-e89b-12d3-a456-426614174000, 9f160df6-72e1-4fe5-bb11-602d45d9c094, bda25c53-9aee-4376-b163-54689a06fda1, '2024-10-19T11:57:32.205039', 'great cool amazing');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (45061326-11ab-4c1a-af7e-a78cfa3f8d15, d86116aa-61e3-4942-9810-07ff2e303218, 21bc8f07-3588-4e55-9d65-852fb7c05cb9, '2024-10-28T11:57:32.205105', 'awesome wonderful interesting');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (3c879465-80cd-4b93-9e97-8e74d3e5c371, d394d936-4e62-437b-a7c2-794c04ab26db, 23b2a38e-3642-4c64-ad13-8872248f24f0, '2024-09-09T11:57:32.205143', 'wonderful beautiful beautiful');
-INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (b14594fd-b1b4-4895-8186-7f1fdbbbd9e4, 4af8f43b-9055-4151-b533-4a3a68ebec94, 7e3eea94-042d-4369-a07c-8f8f1f3daa04, '2024-10-28T11:57:32.205196', 'amazing interesting cool');
+INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (123e4567-e89b-12d3-a456-426614174000, 4af8f43b-9055-4151-b533-4a3a68ebec94, 7e3eea94-042d-4369-a07c-8f8f1f3daa04, '2024-10-28T11:57:32.205196', 'amazing interesting cool');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (9c777d6e-6019-48f7-a014-63983c0a11c4, 624eb085-8dea-44ef-9e95-68e59213d807, 690a1401-01eb-40b3-998d-9c459d4748d0, '2024-08-08T11:57:32.205235', 'interesting interesting beautiful');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (abcd3865-c116-4ba7-88b9-e585876611b7, 93bf6370-a32e-4c88-b5e3-c83c03228848, 440c8163-5ce3-4e2d-8da4-350616a0dcf9, '2024-10-19T11:57:32.205258', 'amazing wonderful wonderful');
 INSERT INTO SistemaPartilhaVideos.Comments (video_id, comment_id, user_id, comment_date, comment_content) VALUES (87d87cf1-a0a2-4918-b0b7-d57704aefc1b, 9daa77cd-57e3-4b54-9db4-348ebbb0c015, da9a0df9-c6b4-4079-938c-d106b90c0c92, '2024-09-03T11:57:32.205279', 'awesome wonderful wonderful');
@@ -167,8 +171,8 @@ INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_
 INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (b82eed04-99ae-4abd-9b33-05ed0e00614c, 0beee940-a7b2-4601-ba4e-abcd6d3285a0, ['2024-08-25T11:57:32.205436']);
 INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (53368ac7-d781-4197-b138-a5fe1fe3b2bf, c5104aa5-e61d-4293-9851-0145ccad7b58, ['2024-10-09T11:57:32.205451']);
 INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (0e42c454-e523-43e2-b248-cd56c733a1c8, ce8dbaf0-85a2-453d-9083-73c7b8ac57fa, ['2024-11-11T11:57:32.205465']);
-INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (1724f5b7-833f-4590-b541-8135198b6033, 3125840c-fc72-4591-a3f7-fe72c2d428f4, ['2024-09-17T11:57:32.205479']);
-INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (b45925bc-479c-4550-a9e9-f0983a80002a, a2a040e1-1903-4412-a6a1-eb4abcde4de8, ['2024-11-03T11:57:32.205492']);
+INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (4f18d8c1-d2c4-44d8-80bf-f28429be04c9, 3125840c-fc72-4591-a3f7-fe72c2d428f4, ['2024-09-17T11:57:32.205479']);
+INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (4f18d8c1-d2c4-44d8-80bf-f28429be04c9, a2a040e1-1903-4412-a6a1-eb4abcde4de8, ['2024-11-03T11:57:32.205492']);
 INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (4f18d8c1-d2c4-44d8-80bf-f28429be04c9, c4152dfa-5c4e-4e20-b895-3910537eee6f, ['2024-08-10T11:57:32.205506']);
 INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (12664200-de34-4561-b539-1c3b2ef83f83, 68410135-3067-4620-8d4b-7703e2380e8b, ['2024-08-25T11:57:32.205519']);
 INSERT INTO SistemaPartilhaVideos.VideoFollowers (video_id, follower_id, follow_date) VALUES (13a197cb-dc17-41a5-a40b-8dad1b2bc2ef, 30c8f721-b5f7-4604-a95d-87adb23e3633, ['2024-09-24T11:57:32.205533']);
