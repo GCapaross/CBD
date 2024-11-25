@@ -5,3 +5,6 @@ services:
       - 9042:9042
     volumes:
       - ./resources:/resources
+      - ./cassandra.yaml:/etc/cassandra/cassandra.yaml
+    environment:
+      - CASSANDRA_ENABLE_USER_DEFINED_FUNCTIONS=true
