@@ -1,0 +1,41 @@
+Alínea b)
+
+### Query 5 - Vídeos partilhados por determinado utilizador (maria1987, por exemplo) num determinado período de tempo (Agosto de 2017, por exemplo);
+**Command**
+bash
+SELECT video_id, nome_video, descricao, upload_date
+FROM SistemaPartilhaVideos.Videos
+WHERE author_id = 24dc7f54-ec4a-4d84-9521-f2a03ac435e8
+AND upload_date >= '2016-08-01' AND upload_date <= '2024-08-31';
+
+
+##### 4.b - Todos os eventos de determinado utilizador;
+**Command**
+bash
+SELECT video_id, event_type, event_timestamp, video_time_seconds
+FROM SistemaPartilhaVideos.RegistEvents
+WHERE user_id = b3a2cb05-bddc-4c18-89db-f1f34b4dc03b;
+
+
+### Query 4
+##### 4.a - Os últimos 5 eventos de determinado vídeo realizados por um utilizador;
+**Command**
+bash
+SELECT video_id, user_id, event_type, event_timestamp, video_time_seconds
+FROM SistemaPartilhaVideos.RegistEvents
+WHERE video_id = c8f85ebf-2ddc-4c30-947c-c714f08c0f16 AND user_id = b3a2cb05-bddc-4c18-89db-f1f34b4dc03b
+ORDER BY event_timestamp DESC
+LIMIT 5;
+
+### Query 3
+##### 3 - Todos os vídeos com a tag Aveiro; (tag8 = Aveiro)
+(Como eu faço geração de dados através dum script, os nomes das tags foram gerados com números)
+**Command**
+bash
+SELECT video_id, nome_video, tags
+FROM SistemaPartilhaVideos.Videos
+WHERE tags CONTAINS 'tag8';
+
+
+
+ESCOLHI IMPLEMENTAR ESTAS QUERIES
