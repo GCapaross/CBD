@@ -1,0 +1,9 @@
+Installing neo4j desktop through yay. I use arch btw.
+
+
+docker exec -it lab4-neo4j-1 bash
+
+Or after running docker compose we can access:
+http://localhost:7474/browser/
+Run neo4j-desktop
+- Install docker-desktop
